@@ -1,37 +1,40 @@
+import string
+
+print ('Приветствуем Вас в игре Shooting bubles')
+
 gamer = {'name': input('Как вас зовут?\n'),
          'age': int(input('Сколько тебе лет?\n')),
-         'sex': '',
-         'pet_name': '',
+         'sex': input('Вы мужчина или женщина?\n'),
+         'pet_name': input('Как зовут Вашего домашнего питомца?\n'),
+         'like_to_play': input('Любите ли вы играть, да или нет?\n'),
+
          }
+if gamer['like_to_play'] == 'Да':
+    gamer ['like_to_play'] = True
+else:
+    gamer ['like_to_play'] = False
 
 if gamer['age'] < 18:
-    if gamer['name'] == 'Вася':
-        print(gamer['name'], 'тубу нельзя играть, потому что ты Вася и молодой')
-    else:
-        print('Тебе нельзя играть')
-elif gamer['name'] == 'Петя':
-    print('Ты плохой')
+    print(gamer['name'], 'тебе нельзя играть, потому что ты молодой')
+
+elif gamer['age']>90:
+    print(gamer['name'], 'эта игра может быть утомительна для Вас')
+    gamer_over_90_answer = input ('Хотите ли вы играть все равно?\n')
+    if gamer_over_90_answer == "Да":
+        gamer_over_90_answer_two = input('Вы уверены?\n')
+        if gamer_over_90_answer_two == "Да":
+            print ('Хорошо, тогда начнем игру')
+        else:
+            print ('До свидания,', gamer['name'])
+
+
+
 else:
-    print('Добро пожаловать в Игру')
+    print ('Я могу назвать буквы алфавита,которых нет в твоем имени и произнести их в слух')
 
-print('Я могу сосчитать твой возраст')
 
-i = 0
-while i <= gamer['age']:
-    print(i)
-    i += 1
+alphabet_lower = [chr(ord("а") + i) for i in range(32)]
 
-    if i > 22:
-        print('замучился считать')
-        break
-else:
-    print('Сработал else в цикле')
+even = [y for y in alphabet_lower if y not in list (gamer ['name'].lower())]
 
-print('А еще я могу произнести имя по буквам')
-
-i = 0
-for char in gamer['name']:
-    i += 1
-    if i == 3:
-        continue
-    print(char)
+print (even)
